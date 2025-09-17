@@ -1,0 +1,22 @@
+{
+  "name": "dismiss-violations",
+  "version": "1.0.0",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:react\" \"wait-on http://localhost:5173 && nodemon main.js\"",
+    "dev:react": "npm run dev --prefix frontend",
+    "build:react": "npm run build --prefix frontend",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "electron": "^31.0.0",
+    "pg": "^8.11.3",
+    "wait-on": "^7.0.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
