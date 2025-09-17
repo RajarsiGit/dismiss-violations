@@ -67,6 +67,6 @@ ipcMain.handle("run-procedure", async () => {
   const sql = fs
     .readFileSync(path.join(__dirname, "scripts/procedure.sql"))
     .toString();
-  await pool.query(sql, BATCH_LIMIT);
+  await pool.query(sql, [BATCH_LIMIT]);
   return "Procedure executed";
 });
