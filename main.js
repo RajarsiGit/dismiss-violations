@@ -14,15 +14,13 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
-      nodeIntegration: false,
     },
   });
 
-  // 👇 Load Vite dev server if available, else load built React files
   if (!app.isPackaged) {
-    win.loadURL("http://localhost:5173"); // Vite dev server port
+    win.loadURL("http://localhost:5173");
   } else {
-    win.loadFile(path.join(__dirname, "frontend/dist/index.html"));
+    win.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
   }
 }
 

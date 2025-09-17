@@ -2,21 +2,46 @@
   "name": "dismiss-violations",
   "version": "1.0.0",
   "main": "main.js",
-  "private": true,
+  "description": "Electron + React app to manage PostgreSQL table creation, Excel uploads, and stored procedure execution",
   "scripts": {
     "dev": "concurrently \"npm run dev:react\" \"wait-on http://localhost:5173 && nodemon main.js\"",
     "dev:react": "npm run dev --prefix frontend",
     "build:react": "npm run build --prefix frontend",
+    "build:app": "npm run build:react && electron-builder",
     "start": "electron ."
   },
-  "dependencies": {
-    "concurrently": "^8.0.1",
-    "electron": "^31.0.0",
-    "pg": "^8.11.3",
-    "wait-on": "^7.0.1",
-    "xlsx": "^0.18.5"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+  "build": {
+    "appId": "com.dismiss.violations",
+    "productName": "Dismiss Violations",
+    "files": [
+      "main.js",
+      "frontend/dist/**/*",
+      "scripts/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "scripts/",
+        "to": "scripts/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "sign": false
+    },
+    "nsis": {
+      "allowElevation": false
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }
